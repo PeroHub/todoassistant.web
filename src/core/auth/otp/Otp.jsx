@@ -32,10 +32,10 @@ function Otp() {
             </span>
         </div>
         <div className={styles.otpDigit}>
-            <input type='number' onChange={handleOnChange} className={styles.inputDigit}></input>
-            <input type='number' onChange={handleOnChange}  className={styles.inputDigit}></input>
-            <input type='number' onChange={handleOnChange}  className={styles.inputDigit}></input>
-            <input type='number' onChange={handleOnChange}  className={styles.inputDigit}></input>
+            <input value={value} type='number' onChange={handleOnChange} className={styles.inputDigit}></input>
+            <input value={value} type='number' onChange={handleOnChange}  className={styles.inputDigit}></input>
+            <input value={value} type='number' onChange={handleOnChange}  className={styles.inputDigit}></input>
+            <input value={value} type='number' onChange={handleOnChange}  className={styles.inputDigit}></input>
         </div>
         <button className={styles.button} type='submit' style={{backgroundColor: bgColor ? '#714dd9':'#D3D0D9'}}>continue</button>
     </section>
