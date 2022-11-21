@@ -27,7 +27,8 @@ import ErrorMain from "./components/404";
 import SettingsProfile from "./core/settings/profile/SettingsProfile";
 import Otp from "./core/auth/otp/Otp";
 import Sub from "./core/sub/Sub";
-
+import NewPassword from "./components/resetPassword/NewPassword";
+import ResetPassword from "./components/resetPassword/ResetPassword";
 function App() {
   return (
     <ErrorBoundary>
@@ -55,6 +56,10 @@ function App() {
           <Route path="/account/edit" element={<PreferenceSettingEdit />} />
 
           <Route path="/login" element={<Login />} />
+          <Route path="/newpassword" element={<NewPassword />} />
+          <Route path="/resetpassword" element={<ResetPassword />} />
+
+
           <Route path="/signup" element={<Signup />} />
           <Route path="/newtask" element={<NewTask />} />
           <Route path="/va1" element={<VaModal1 />} />
