@@ -3,19 +3,19 @@ import classes from "./NewPassword.module.scss";
 import arrow from "../../assets/arrow-left.png";
 import eye from "../../assets/eye.png";
 import { useState } from "react";
-import { useFormik } from "formik";
-import * as yup from "yup";
+// import { useFormik } from "formik";
+// import * as yup from "yup";
 const NewPassword = () => {
   const [togglePassword, settogglePassword] = useState(false);
-  let formik = useFormik({
-    initialValues: {
-      rPassword: "",
-      password:"",
-    },
-    validationSchema: yup.object({
-      rPassword: yup.string().required().oneOf([yup.ref("password"), null], "Password must match"),
-    }),
-  });
+//   let formik = useFormik({
+//     initialValues: {
+//       rPassword: "",
+//       password:"",
+//     },
+//     validationSchema: yup.object({
+//       rPassword: yup.string().required().oneOf([yup.ref("password"), null], "Password must match"),
+//     }),
+//   });
   return (
     <div className={classes.container}>
       <form className={classes.content}>
@@ -31,8 +31,8 @@ const NewPassword = () => {
               <input
                 required
                 name="password"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
+                // onChange={formik.handleChange}
+                // onBlur={formik.handleBlur}
                 type={togglePassword ? "text" : "password"}
                 placeholder="Enter email"
               />
@@ -48,15 +48,13 @@ const NewPassword = () => {
             <label htmlFor="email">Confirm Password</label>
             <div
               className={
-                formik.errors.rPassword && formik.touched.rPassword
-                  ? classes.inputInvalid
-                  : classes.inputEmail
+               classes.inputEmail
               }
             >
               <input
                 required
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
+                // onChange={formik.handleChange}
+                // onBlur={formik.handleBlur}
                 type={togglePassword ? "text" : "password"}
                 name="rPassword"
                 placeholder="Enter Password"
@@ -68,7 +66,7 @@ const NewPassword = () => {
                 alt=""
               />
             </div>
-            {formik.errors.rPassword && formik.touched.rPassword ? (
+            {/* {formik.errors.rPassword && formik.touched.rPassword ? (
               <span className={classes.red}>Password does not match</span>
             ) : (
               ""
@@ -77,10 +75,10 @@ const NewPassword = () => {
               <span className={classes.green}>Password match!</span>
             ) : (
               ""
-            )}
+            )} */}
           </div>
         </div>
-        <button className={formik.errors.rPassword && formik.touched.rPassword ? classes.valid:classes.invalid}> Continue</button>
+        <button className={classes.valid}> Continue</button>
       </form>
       <div className={classes.side}></div>
     </div>

@@ -1,18 +1,18 @@
 import React from "react";
 import classes from "./ResetPassword.module.scss";
-import warning from "../../assets/form-warning.png";
+// import warning from "../../assets/form-warning.png";
 import arrow from "../../assets/arrow-left.png";
-import { useFormik } from "formik";
-import * as yup from "yup";
+// import { useFormik } from "formik";
+// import * as yup from "yup";
 const ResetPassword = () => {
-  let formik = useFormik({
-    initialValues: {
-      email: "",
-    },
-    validationSchema: yup.object({
-      email: yup.string().required("Email does not match").email(),
-    }),
-  });
+//   let formik = useFormik({
+//     initialValues: {
+//       email: "",
+//     },
+//     validationSchema: yup.object({
+//       email: yup.string().required("Email does not match").email(),
+//     }),
+//   });
   return (
     <div className={classes.container}>
       <form className={classes.content}>
@@ -27,26 +27,24 @@ const ResetPassword = () => {
             <label htmlFor="email">Email Address</label>
             <div
               className={
-                formik.errors.email && formik.touched.email
-                  ? classes.inputInvalid
-                  : classes.inputEmail
+                 classes.inputEmail
               }
             >
               <input
                 required
                 name="email"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
+                // onChange={formik.handleChange}
+                // onBlur={formik.handleBlur}
                 type="email"
                 placeholder="Enter email"
               />
-              {formik.errors.email && formik.touched.email ? (
+              {/* {formik.errors.email && formik.touched.email ? (
                 <img src={warning} width={20} alt="" />
               ) : (
                 ""
-              )}
+              )} */}
             </div>
-            {formik.errors.email && formik.touched.email ? (
+            {/* {formik.errors.email && formik.touched.email ? (
               <span className={classes.red}>Email does not match</span>
             ) : (
               ""
@@ -55,7 +53,7 @@ const ResetPassword = () => {
               <span className={classes.green}>Email match!</span>
             ) : (
               ""
-            )}
+            )} */}
           </div>
         </div>
         <button> Continue</button>
