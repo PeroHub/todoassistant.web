@@ -1,0 +1,5 @@
+:local(.prefpage) {
+  display: flex;
+  flex-direction: row;
+  padding-top: 1rem;
+}
