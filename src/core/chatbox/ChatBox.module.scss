@@ -1,4 +1,6 @@
 .chatMain {
+    // minWidth: "100vw"
+    // overflow-x: hidden;
     &__pad {
         padding: 30px !important;    
     }
@@ -51,7 +53,7 @@
     }
 
     input {
-        width: 93%;
+        // width: 93%;
         padding: 30px;
         background: #F6FAFB;
         border: 1px solid #D3D0D9;
@@ -60,14 +62,14 @@
         margin-top: 20px !important;
         flex: 1;
         @media (min-width: 900px) {
-        width: 97%;
+        // width: 97%;
             
         }
     }
     span {
-        position: absolute;
-        right: 80px;
-        margin-top: -65px;
+        // position: absolute;
+        // right: 80px;
+        // margin-top: -65px;
         img {
             margin: 0px 5px;
             // margin-top: -60px !important;

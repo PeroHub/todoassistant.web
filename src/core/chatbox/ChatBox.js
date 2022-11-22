@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import * as React from "react";
 import clientVa from "../../assets/dashboard/clientVa.png";
 import styles from "./ChatBox.module.scss";
 import { Box } from "@mui/material";
+import Popover from "@mui/material/Popover";
+import Typography from "@mui/material/Typography";
 
 //Images
 import send from "../../assets/dashboard/send.png";
@@ -54,51 +56,121 @@ const data = [
   }
 ];
 
-export function PopUp({ toggle }) {
+export function BasicPopover({ anchorEl, handleClose }) {
+  // const [anchorEl, setAnchorEl] = React.useState(null);
+
+  // const handleClick = (event) => {
+  //   setAnchorEl(event.currentTarget);
+  // };
+
+  // const handleClose = () => {
+  //   setAnchorEl(null);
+  // };
+
+  const open = Boolean(anchorEl);
+  const id = open ? "simple-popover" : undefined;
+
   return (
-    <Box
-      sx={{
-        position: "fixed",
-        top: { xs: "53vh", sm: "55vh", md: "54vh" },
-        visibility: toggle ? "visible" : "hidden",
-        flexDirection: "column",
-        right: { xs: "130px", sm: "120px", md: "140px" },
-        minWidth: { xs: "60%", sm: "40%", md: "20%" },
-        background: " #F6FAFB",
-        border: "1px solid #D3D0D9"
-      }}
-      className={styles.main}
-    >
-      <Box className={styles.main__sub}>
-        <img src={camera} alt="camera" />
-        <p>camera</p>
-      </Box>
-      <Box className={styles.main__sub}>
-        <img src={gallery} alt="gallery" />
-        <p>Photo & Video Library</p>
-      </Box>
-      <Box className={styles.main__sub}>
-        <img src={document} alt="document" />
-        <p>Document</p>
-      </Box>
-      <hr />
-      <Box className={styles.main__sub}>
-        <img src={monitor} alt="monitor" />
-        <p>Upload from your computer</p>
-      </Box>
-      <Box className={styles.main__sub}>
-        <img src={cloud} alt="cloud" />
-        <p>Add from Google Drive</p>
-      </Box>
-    </Box>
+    <div>
+      <Popover
+        // sx={{marginLeft: "-60px", border: "1px solid red", width: "100%"}}
+        id={id}
+        open={open}
+        anchorEl={anchorEl}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "right"
+        }}
+      >
+        <Box className={styles.main} p={2}>
+          <Box sx={{ display: "flex" }}>
+            <img src={camera} alt="camera" />
+            <Typography ml={1}>camera</Typography>
+          </Box>
+          <Box sx={{ display: "flex" }} mt={2}>
+            <img src={gallery} alt="gallery" />
+            <Typography ml={1}>Photo & Video Library</Typography>
+          </Box>
+          <Box className={styles.main__sub} sx={{ display: "flex" }} mt={2}>
+            <img src={document} alt="document" />
+            <Typography ml={1}>Document</Typography>
+          </Box>
+
+          <hr style={{ marginTop: "10px" }} />
+          <Box className={styles.main__sub} sx={{ display: "flex" }} mt={2}>
+            <Typography>Attach</Typography>
+          </Box>
+          <Box sx={{ display: "flex" }} mt={2}>
+            <img src={monitor} alt="monitor" />
+            <Typography ml={1}>Upload from your computer</Typography>
+          </Box>
+          <Box sx={{ display: "flex" }} mt={2}>
+            <img src={cloud} alt="cloud" />
+            <Typography ml={1}>Add from Google Drive</Typography>
+          </Box>
+        </Box>
+      </Popover>
+    </div>
   );
 }
 
+// export function PopUp({ toggle }) {
+//   return (
+//     <Box
+//       sx={{
+//         position: "fixed",
+//         top: { xs: "53vh", sm: "55vh", md: "54vh" },
+//         visibility: toggle ? "visible" : "hidden",
+//         flexDirection: "column",
+//         right: { xs: "130px", sm: "120px", md: "140px" },
+//         minWidth: { xs: "60%", sm: "40%", md: "20%" },
+//         background: " #F6FAFB",
+//         border: "1px solid #D3D0D9"
+//       }}
+//       className={styles.main}
+//     >
+//       <Box className={styles.main__sub}>
+//         <img src={camera} alt="camera" />
+//         <p>camera</p>
+//       </Box>
+//       <Box className={styles.main__sub}>
+//         <img src={gallery} alt="gallery" />
+//         <p>Photo & Video Library</p>
+//       </Box>
+//       <Box className={styles.main__sub}>
+//         <img src={document} alt="document" />
+//         <p>Document</p>
+//       </Box>
+//       <hr />
+//       <Box className={styles.main__sub}>
+//         <img src={monitor} alt="monitor" />
+//         <p>Upload from your computer</p>
+//       </Box>
+//       <Box className={styles.main__sub}>
+//         <img src={cloud} alt="cloud" />
+//         <p>Add from Google Drive</p>
+//       </Box>
+//     </Box>
+//   );
+// }
+
 const ChatBox = () => {
   // const [anchorEl, setAnchorEl] = React.useState(null);
-  const [value, setValue] = useState(data);
-  const [toggle, setToggle] = useState(false);
-  const [input, setInput] = useState("");
+  const [value, setValue] = React.useState(data);
+  const [toggle, setToggle] = React.useState(false);
+  const [input, setInput] = React.useState("");
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = event => {
+    setAnchorEl(event.currentTarget);
+    setToggle(true);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+    setToggle(false);
+  };
 
   console.log(value);
   // const handleClick = (event) => {
@@ -139,35 +211,18 @@ const ChatBox = () => {
           <Box className={styles.chatMain__pad}>{value.message}</Box>
         </Box>
       ))}
-      <input
-        type="text"
-        onChange={handleChange}
-        value={input}
-        placeholder="Type your message..."
-      />
-      <span>
-        {toggle === true ? (
-          <img onClick={() => setToggle(false)} src={close} alt="close" />
-        ) : (
-          <img onClick={() => setToggle(true)} src={vaAdd} alt="add" />
-        )}
-        {/* <img onClick={() => setToggle(true)}  src={vaAdd} alt="add" /> */}
-        <img src={microphone} alt="microphone" />
-      </span>
 
       <Box
         // sx={{ position: 'absolute', top: "0vh", left: "50rem"}}
         className={styles.chatMain__ima}
-      >
-        <img
-          onClick={handleSend}
-          // style={{   position: 'absolute', right: "10px", marginTop: "-70px" }}
-          src={send}
-          alt="send"
-        />
-      </Box>
+      ></Box>
 
-      <PopUp toggle={toggle} />
+      <BasicPopover
+        toggle={toggle}
+        anchorEl={anchorEl}
+        handleClick={handleClick}
+        handleClose={handleClose}
+      />
       {/* <Popover
             sx={{mb:2}}
             id={id}
@@ -184,6 +239,28 @@ const ChatBox = () => {
               <Typography  component='span'>camera</Typography>
             </Box>
         </Popover> */}
+      <Box>
+        <Box>
+          <input
+            type="text"
+            onChange={handleChange}
+            value={input}
+            placeholder="Type your message..."
+          />
+        </Box>
+        <Box>
+          <img onClick={handleSend} src={send} alt="send" />
+          <span>
+            {toggle === true ? (
+              <img onClick={handleClose} src={close} alt="close" />
+            ) : (
+              <img onClick={handleClick} src={vaAdd} alt="add" />
+            )}
+            {/* <img onClick={() => setToggle(true)}  src={vaAdd} alt="add" /> */}
+            <img src={microphone} alt="microphone" />
+          </span>
+        </Box>
+      </Box>
     </div>
   );
 };

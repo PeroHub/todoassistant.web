@@ -1,7 +1,8 @@
 import { Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import ErrorBoundary from "./layout/error-boundary/ErrorBoundary";
-import AccountPreferences from "./components/accountPreferences/AccountPreferences";
+import AccountPreferences from "./components/accountPreferences/account/AccountPreferences";
+import ProPreferences from "./components/accountPreferences/pro/ProPreferences";
 import PreferenceSettingEdit from "./components/PreferenceSetting/Preference";
 import Signup from "./core/auth/signup/Signup";
 import GeneralLoading from "./layout/general-loading/GeneralLoading";
@@ -27,8 +28,12 @@ import ErrorMain from "./components/404";
 import SettingsProfile from "./core/settings/profile/SettingsProfile";
 import Otp from "./core/auth/otp/Otp";
 import Sub from "./core/sub/Sub";
-import NewPassword from "./components/resetPassword/NewPassword";
-import ResetPassword from "./components/resetPassword/ResetPassword";
+
+import NewPassword from "./components/resetPassword and newPassword pages/NewPassword";
+import ResetPassword from "./components/resetPassword and newPassword pages/ResetPassword";
+
+import VaDasboard from "./components/vaDashboard/VaDasboard";
+
 function App() {
   return (
     <ErrorBoundary>
@@ -49,10 +54,16 @@ function App() {
             <Route path="payment" element={<Payment />} />
             <Route path="profile" element={<VaProfile />} />
           </Route>
+          <Route path="/virtualassistance" element={<VaDasboard />}>
+            <Route path="" element={<Home />} />
+            <Route path="notifications" element={<Notifications />} />
+           
+          </Route>
           <Route path="/about" element={<About />} />
 
           <Route path="/policy" element={<PrivatePolicy />} />
           <Route path="/account" element={<AccountPreferences />} />
+          <Route path="/pro" element={<ProPreferences />} />
           <Route path="/account/edit" element={<PreferenceSettingEdit />} />
 
           <Route path="/login" element={<Login />} />
@@ -70,6 +81,8 @@ function App() {
           <Route path="/settings/profile" element={<SettingsProfile />} />
 
           <Route path="/faq" element={<FAQ />} />
+          <Route path="/newpassword" element={<NewPassword/>} />
+          <Route path="/resetpassword" element={<ResetPassword />} />
 
           {/* 404-error handler */}
           {/* <Route path="*" element={<GeneralLoading text="PAGE NOT FOUND" />} /> */}
